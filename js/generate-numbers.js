@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
     $('#sortNumbers').on('click', function() {
         hashSort();
-        bubbleSort();
+        bubbleSort1(); // no optimization
         quickSort();
     });
 });

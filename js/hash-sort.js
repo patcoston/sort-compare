@@ -1,10 +1,10 @@
 function hashSort() {
     console.log('hash sort');
-    var startTime = performance.now();
     var i;
     var copy = numbers.slice(0);
-    var len = copy.length;
     // STEP 1: find the highest and lowest values in array
+    var startTime = performance.now();
+    var len = copy.length;
     var low = Infinity;
     var high = -Infinity;
     for (i = 0; i < len; i++) {
@@ -42,6 +42,5 @@ function hashSort() {
     $('#hashSort').text(result);
     var endTime = performance.now();
     var time = endTime - startTime;
-    console.log(startTime, endTime, time);  
     $('#hashSortTime').text(time);
 }
