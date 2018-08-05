@@ -19,14 +19,12 @@
         <b>Initialize numbers to sort</b><br>
         <div id="errors"></div>
         <input type="text" id="totalNumbers" value="10000"> How many numbers to sort<br>
-        <input type="text" id="startNumber" value="0"> Start number (can start negative)<br>
-        <input type="text" id="endNumber" value="1000"> End number (can end negative)<br>
-        <b>Type of numbers</b><br>
-        <input type="radio" name="numberType" value="unsorted" checked="checked"> Unsorted<br>
-        <input type="radio" name="numberType" value="sort-ascending"> Sorted ascending<br>
-        <input type="radio" name="numberType" value="sort-descending"> Sorted descending<br>
-        <button id="generateNumbers">Generate Numbers</button><br>
-        <textarea id="numbersToSort"></textarea>
+        <input type="text" id="startNumber" value="0"> Start number (can be negative, and greater than or equal to End number)<br>
+        <input type="text" id="endNumber" value="1000"> End number (can be negative, and less than or equal to Start Number)<br>
+        <input type="radio" name="numberType" value="unsorted" checked="checked"> Unsorted
+        <input type="radio" name="numberType" value="sorted"> Sorted<br>
+        <button id="generateNumbers">Generate Numbers</button> Copy enter your own numbers into textbox below<br>
+        <textarea id="numbersToSort" cols="100" rows="10"></textarea>
 
     </p>
 </body>

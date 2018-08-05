@@ -1,13 +1,11 @@
 var numbers = [];
 $(document).ready(function() {
     function generateNumbers() {
-        console.log('generate numbers');
         var error = '';
         $('#errors').html('');
         var totalNumbers = parseInt($('#totalNumbers').val());
         var startNumber = parseInt($('#startNumber').val());
         var endNumber = parseInt($('#endNumber').val());
-        console.log(totalNumbers, startNumber, endNumber);
         if (isNaN(totalNumbers)) {
             error += 'Numbers to sort is not a number<br>';
         }
@@ -17,17 +15,43 @@ $(document).ready(function() {
         if (isNaN(endNumber)) {
             error += 'End number is not a number<br>';
         }
-        if (startNumber > endNumber) {
-            error += 'Start must be less than or equal to End number<br>';
-        }
-        console.log(error);
         if (error.length > 0) {
             $('#errors').html(error);
             return;
         }
+        var range = 0;
+        if (endNumber >= startNumber) {
+            range = endNumber - startNumber + 1;
+        } else {
+            range = startNumber - endNumber + 1;
+        }
+        console.log(range);
         var numberType = $('input[name=numberType]:checked').val();
-        var range = endNumber - startNumber + 1;
-        numbers = new Array(range);
+        numbers = new Array(totalNumbers);
+        var offset = 0;
+        if (startNumber <= endNumber) {
+            offset = startNumber;
+        } else {
+            offset = endNumber;
+        }
+        if (numberType === 'unsorted') {
+            for (var i = 0; i < totalNumbers; i++) {
+                numbers[i] = parseInt(Math.random() * range + offset);
+            }
+        } else if (numberType === 'sorted') {
+            var step = range / totalNumbers;
+            if (endNumber < startNumber) {
+                step *= -1;
+            }
+            var n = startNumber;
+            for (var i = 0; i < totalNumbers; i++) {
+                numbers[i] = parseInt(n);
+                n += step;
+            }
+            numbers[totalNumbers-1] = endNumber;
+        }
+        var numbersStr = numbers.join(' ').trim();
+        $('#numbersToSort').text(numbersStr);
     }
     generateNumbers();
     $('#generateNumbers').on('click', function() {
