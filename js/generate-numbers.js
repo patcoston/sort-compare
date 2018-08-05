@@ -25,7 +25,7 @@ $(document).ready(function() {
         } else {
             range = startNumber - endNumber + 1;
         }
-        console.log(range);
+        console.log('range=' + range);
         var numberType = $('input[name=numberType]:checked').val();
         numbers = new Array(totalNumbers);
         var offset = 0;
@@ -43,12 +43,13 @@ $(document).ready(function() {
             if (endNumber < startNumber) {
                 step *= -1;
             }
+            console.log('step=' + step);
             var n = startNumber;
             for (var i = 0; i < totalNumbers; i++) {
-                numbers[i] = parseInt(n);
+                numbers[i] = parseInt(n + 0.5);
+                console.log(i, n, numbers[i]);
                 n += step;
             }
-            numbers[totalNumbers-1] = endNumber;
         }
         var numbersStr = numbers.join(' ').trim();
         $('#numbersToSort').text(numbersStr);
@@ -56,5 +57,10 @@ $(document).ready(function() {
     generateNumbers();
     $('#generateNumbers').on('click', function() {
         generateNumbers();
+    });
+    $('#sortNumbers').on('click', function() {
+        hashSort();
+        bubbleSort();
+        quickSort();
     });
 });
