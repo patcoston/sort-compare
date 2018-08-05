@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sort Compare</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/generate-numbers.js"></script>
+<script src="js/hash-sort.js"></script>
+<script src="js/bubble-sort.js"></script>
+<script src="js/quick-sort.js"></script>
+<script src="js/merge-sort.js"></script>
+<script src="js/insertion-sort.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sort-compare.css" />
+</head>
+<body>
+    <h2>Sort Compare for integer numbers</h2>
+    <p>
+        <b>Initialize numbers to sort</b><br>
+        <div id="errors"></div>
+        <input type="text" id="totalNumbers" value="10000"> How many numbers to sort<br>
+        <input type="text" id="startNumber" value="0"> Start number (can start negative)<br>
+        <input type="text" id="endNumber" value="1000"> End number (can end negative)<br>
+        <b>Type of numbers</b><br>
+        <input type="radio" name="numberType" value="unsorted" checked="checked"> Unsorted<br>
+        <input type="radio" name="numberType" value="sort-ascending"> Sorted ascending<br>
+        <input type="radio" name="numberType" value="sort-descending"> Sorted descending<br>
+        <button id="generateNumbers">Generate Numbers</button><br>
+        <textarea id="numbersToSort"></textarea>
+
+    </p>
+</body>
+</html>
