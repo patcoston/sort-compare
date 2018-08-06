@@ -1,5 +1,4 @@
 function hashSort() {
-    console.log('hash sort');
     var i;
     var copy = numbers.slice(0);
     // STEP 1: find the highest and lowest values in array
@@ -38,9 +37,9 @@ function hashSort() {
             }
         }
     }
-    var result = copy.join(' ');
-    $('#hashSort').text(result);
     var endTime = performance.now();
     var time = endTime - startTime;
+    var result = copy.join(' ');
+    $('#hashSort').text(result);
     $('#hashSortTime').text(time);
 }
