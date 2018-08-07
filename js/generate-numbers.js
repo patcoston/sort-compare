@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
     $('#sortNumbers').on('click', function() {
         getNumbers();
-        hashSort();
+        //hashSort();
         bubbleSort1(); // no optimization
         bubbleSort2(); // all optimizations
     });

@@ -40,7 +40,7 @@ function bubbleSort2() {
     var swapCount = 0;
     do {
         swapCount = 0;
-        for (i = start; i < end; i++) {
+        for (i = start, j = end; i < end; i++, j--) {
             if (copy[i] > copy[i+1]) {
                 tmp = copy[i];
                 copy[i] = copy[i+1];
@@ -48,21 +48,19 @@ function bubbleSort2() {
                 newEnd = i + 1;
                 swapCount++;
             }
+            if (copy[j-1] > copy[j]) {
+                tmp = copy[j];
+                copy[j] = copy[j-1];
+                copy[j-1] = tmp;
+                newStart = j - 1;
+                swapCount++;
+            }
         }
+        console.log(swapCount, newStart, newEnd, copy);
         if (swapCount < 2) {
             break;
         }
         end = newEnd;
-        swapCount = 0;
-        for (i = end; i > start; i--) {
-            if (copy[i-1] > copy[i]) {
-                tmp = copy[i];
-                copy[i] = copy[i-1];
-                copy[i-1] = tmp;
-                newStart = i - 1;
-                swapCount++;
-            }
-        }
         start = newStart;
     } while(swapCount > 1);
     var endTime = performance.now();
