@@ -42,4 +42,5 @@ function hashSort() {
     var result = copy.join(' ');
     $('#hashSort').text(result);
     $('#hashSortTime').text(time);
+    return result;
 }

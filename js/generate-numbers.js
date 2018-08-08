@@ -57,8 +57,20 @@ $(document).ready(function() {
     });
     $('#sortNumbers').on('click', function() {
         getNumbers();
-        //hashSort();
-        bubbleSort1(); // no optimization
-        bubbleSort2(); // all optimizations
+        var s = new Array(3);
+        s[0] = hashSort();
+        s[1] = bubbleSort1(); // no optimization
+        s[2] = bubbleSort2(); // all optimizations
+        var error = '';
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if (i != j) {
+                    if (s[i] != s[j]) {
+                        error += 'Sort Results ' + i + ' ' + j + ' are different<br>';
+                    }
+                }
+            }
+        }
+        $('#errors').html(error);
     });
 });
