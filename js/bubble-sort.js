@@ -57,21 +57,18 @@ function bubbleSort2() {
                 tmp = copy[i1];
                 copy[i1] = copy[i2];
                 copy[i2] = tmp;
-                newEnd = i2;
-                totalSwaps++;
+                newEnd = i1;
+                swapCount1++;
             }
-            if (!((i1 === j1) && (i2 === j2))) { // no need to check the same pair of numbers
-                if (copy[j1] > copy[j2]) {
-                    tmp = copy[j2];
-                    copy[j2] = copy[j1];
-                    copy[j1] = tmp;
-                    newStart = j1;
-                    swapCount2++;
-                }
+            if (copy[j1] > copy[j2]) {
+                tmp = copy[j2];
+                copy[j2] = copy[j1];
+                copy[j1] = tmp;
+                newStart = j2;
+                swapCount2++;
             }
             totalIterations++;
         }
-        //console.log(swapCount1, swapCount2, newStart, newEnd, copy);
         swapCount = swapCount1 + swapCount2;
         totalSwaps += swapCount;
     } while(swapCount > 1);

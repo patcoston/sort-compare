@@ -1,0 +1,13 @@
+div.bar {
+    border: 1px solid black;
+    background-color: red;
+}
+
+#container {
+    position: relative;
+    margin: 30px;
+    padding: 20px;
+    border: 1px solid black;
+    height: 500px;
+    width: 1180px;
+}
