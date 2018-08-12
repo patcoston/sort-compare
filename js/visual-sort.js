@@ -5,29 +5,35 @@ $(document).ready(function() {
     var left = 10;
 
     for (var i = 0; i < 100; i++) {
-        numbers[i] = parseInt(Math.random()*height+1);
-        html += '<div class="bar" style="position:absolute;bottom:10px;width:10px;left:' + left + 'px;height:' + numbers[i] + 'px"></div>';
+        numbers[i] = {
+            height: parseInt(Math.random()*height+1)
+        };
+        html += '<div class="bar" style="position:absolute;bottom:10px;width:10px;left:' + left + 'px;height:' + numbers[i].height + 'px"></div>';
         left += 12;
     }
     $('#container').html(html);
+    var n = 0;
+    var $bar = $('.bar');
+    $bar.each(function() {
+        var $div = $(this);
+        numbers[n].$div = $div;
+        numbers[n].left = $div.css('left');
+        n++;
+    });
 
     function swapDIVs(x, y) {
-        console.log('swap ' + x + ' ' + y);
-        var $bar = $('.bar');
-        $bar.css({"background-color":"red"});
-        var $divx = $bar.eq(x);
-        var $divy = $bar.eq(y);
-        var leftx = parseInt($divx.css('left'));
-        var lefty = parseInt($divy.css('left'));
-        $divx.css({"background-color":"green"});
-        $divy.css({"background-color":"green"});
-        leftxPX = (leftx + 12) + 'px';
-        leftyPX = (lefty - 12) + 'px';
-        $divx.css({left: leftxPX});
-        $divy.css({left: leftyPX});
+        numbers[x].$div.css({'background-color':'green'});
+        numbers[y].$div.css({'background-color':'green'});
+        var tmp = numbers[x];
+        numbers[x] = numbers[y];
+        numbers[y] = tmp;
+        tmp = numbers[x].left;
+        numbers[x].left = numbers[y].left;
+        numbers[y].left = tmp;
+        numbers[x].$div.css({'left': numbers[x].left});
+        numbers[y].$div.css({'left': numbers[y].left});
     }
 
-    var tmp = 0;
     var i1, i2, j1, j2;
     var newStart = 0;
     var newEnd = 99;
@@ -40,31 +46,25 @@ $(document).ready(function() {
     function loop() {
         i2 = i1 + 1;
         j1 = j2 - 1;
-        if (numbers[i1] > numbers[i2]) {
-            tmp = numbers[i1];
-            numbers[i1] = numbers[i2];
-            numbers[i2] = tmp;
+        console.log('i1=' + i1 + ' i2=' + i2 + ' j1=' + j1 + ' j2=' + j2);
+        if (numbers[i1].height > numbers[i2].height) {
+            swapDIVs(i1, i2);
             newEnd = i1;
             swapCount++;
-            swapDIVs(i1, i2);
         }
-        if (numbers[j1] > numbers[j2]) {
-            tmp = numbers[j2];
-            numbers[j2] = numbers[j1];
-            numbers[j1] = tmp;
+        if (numbers[j1].height > numbers[j2].height) {
+            swapDIVs(j1, j2);
             newStart = j2;
             swapCount++;
-            swapDIVs(j1, j2);
         }
         setTimeout(function() {
-            console.log('setTimeout i1=' + i1 + ' swapCount=' + swapCount);
-            if (i1 >= end) {
+            $bar.css({'background-color':'red'});
+            console.log('i1=' + i1 + ' end=' + end + ' swapCount=' + swapCount);;
+            if (i2 === end) {
                 if (swapCount > 1) {
                     swapCount = 0;
-                    start = newStart;
-                    end = newEnd;
-                    i1 = start;
-                    j2 = end;
+                    i1 = start = newStart;
+                    j2 = end = newEnd;
                     loop();
                 }
             } else {
