@@ -61,9 +61,10 @@ $(document).ready(function() {
         s[0] = hashSort();
         s[1] = bubbleSort1(); // no optimization
         s[2] = bubbleSort2(); // all optimizations
+        s[3] = bubbleSort3(); // cocktail shaker
         var error = '';
-        for (var i = 0; i < 3; i++) {
-            for (var j = 0; j < 3; j++) {
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 4; j++) {
                 if (i != j) {
                     if (s[i] != s[j]) {
                         error += 'Sort Results ' + i + ' ' + j + ' are different<br>';
